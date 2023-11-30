@@ -7,7 +7,7 @@ import (
 )
 
 type Transaction struct {
-	ID            string         `gorm:"primary_key" json:"id"`
+	ID            uint           `gorm:"primary_key:auto_increment" json:"id"`
 	NomorKontrak  string         `gorm:"type:varchar(255)" json:"nomor_kontrak" form:"nomor_kontrak" validate:"required,nomor_kontrak"`
 	OTR           string         `gorm:"type:varchar(255)" json:"otr" form:"otr" validate:"required,otr"`
 	AdminFee      string         `gorm:"type:varchar(255)" json:"admin_fee"`

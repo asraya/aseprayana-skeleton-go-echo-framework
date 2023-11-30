@@ -3,7 +3,7 @@ package dto
 import dto "aseprayana-skeleton-go/dto/limit"
 
 type ProfileRequest struct {
-	ID string `param:"id" validate:"required"`
+	ID uint `param:"id" validate:"required"`
 }
 
 type ProfileResponse struct {

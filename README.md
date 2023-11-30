@@ -12,7 +12,6 @@
   - [x] Seeder and migration database
   - [x] CI-CD
 
-
 ## how to run
 - config .ENV
 ```

@@ -7,15 +7,15 @@ type CreateRequest struct {
 }
 
 type GetByIdRequest struct {
-	ID string `param:"id" validate:"required"`
+	ID uint `param:"id" validate:"required"`
 }
 
 type DeleteRequest struct {
-	ID string `param:"id" validate:"required"`
+	ID uint `param:"id" validate:"required"`
 }
 
 type UpdateRequest struct {
-	ID            string `param:"id" validate:"required"`
+	ID            uint   `param:"id" validate:"required"`
 	NomorKontrak  string `json:"nomor_kontrak" form:"nomor_kontrak" validate:"required,nomor_kontrak"`
 	OTR           string `json:"otr" form:"otr" validate:"required,otr"`
 	AdminFee      string `json:"admin_fee"`
