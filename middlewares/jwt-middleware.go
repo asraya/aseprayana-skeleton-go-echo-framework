@@ -11,13 +11,13 @@ import (
 )
 
 type JWTService interface {
-	GenerateToken(id uint, name string) (string, error)
+	GenerateToken(id string, name string) (string, error)
 
 	ValidateToken(token string) (*jwt.Token, string, error)
 }
 
 type jwtCustomClaim struct {
-	ID   uint   `json:"id"`
+	ID   string `json:"id"`
 	Name string `json:"name"`
 	jwt.StandardClaims
 }
@@ -43,7 +43,7 @@ func getSecretKey() string {
 	return secretKey
 }
 
-func (j *jwtService) GenerateToken(id uint, name string) (string, error) {
+func (j *jwtService) GenerateToken(id string, name string) (string, error) {
 	claims := jwt.MapClaims{
 		"id":   id,
 		"name": name,

@@ -14,6 +14,7 @@ func (u *authService) Signup(req dto.AuthRegisterRequest) (dto.AuthRegisterRespo
 
 	user := dto.AuthRegisterRequest{
 		ID:           req.ID,
+		KTP:          req.KTP,
 		FullName:     req.FullName,
 		LegalName:    req.LegalName,
 		TempatLahir:  req.TempatLahir,
@@ -29,8 +30,10 @@ func (u *authService) Signup(req dto.AuthRegisterRequest) (dto.AuthRegisterRespo
 	}
 
 	response := dto.AuthRegisterResponse{
+		ID:           createdUser.ID,
 		FullName:     createdUser.FullName,
 		LegalName:    createdUser.LegalName,
+		KTP:          createdUser.KTP,
 		TempatLahir:  createdUser.TempatLahir,
 		TanggalLahir: createdUser.TanggalLahir,
 		Gaji:         createdUser.Gaji,

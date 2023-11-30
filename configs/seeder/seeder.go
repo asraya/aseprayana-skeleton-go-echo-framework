@@ -12,7 +12,7 @@ func Users() {
 
 	var users []entity.User
 	var budi = entity.User{
-		ID:           1,
+		ID:           "956f2014-f8ab-41e2-88c1-0c3871524665",
 		FullName:     "Budi",
 		LegalName:    "Budi",
 		Email:        "budi@gmail.com",
@@ -27,7 +27,7 @@ func Users() {
 	users = append(users, budi)
 
 	var annisa = entity.User{
-		ID:           2,
+		ID:           "c3c9e0d3-b3cf-4e53-9d24-b38f16e6f419",
 		FullName:     "Annisa",
 		LegalName:    "Annisa",
 		Email:        "annisa@gmail.com",
@@ -57,7 +57,7 @@ func Limit() {
 
 	var limit = entity.Limit{
 		ID:     1,
-		UserID: 1,
+		UserID: "956f2014-f8ab-41e2-88c1-0c3871524665",
 		Limit:  100000,
 		Month:  1,
 	}
@@ -65,7 +65,7 @@ func Limit() {
 
 	var limit2 = entity.Limit{
 		ID:     2,
-		UserID: 1,
+		UserID: "956f2014-f8ab-41e2-88c1-0c3871524665",
 		Limit:  200000,
 		Month:  2,
 	}
@@ -73,7 +73,7 @@ func Limit() {
 
 	var limit3 = entity.Limit{
 		ID:     3,
-		UserID: 1,
+		UserID: "956f2014-f8ab-41e2-88c1-0c3871524665",
 		Limit:  500000,
 		Month:  3,
 	}
@@ -81,7 +81,7 @@ func Limit() {
 
 	var limit4 = entity.Limit{
 		ID:     4,
-		UserID: 1,
+		UserID: "956f2014-f8ab-41e2-88c1-0c3871524665",
 		Limit:  700000,
 		Month:  4,
 	}
@@ -89,7 +89,7 @@ func Limit() {
 
 	var limit5 = entity.Limit{
 		ID:     5,
-		UserID: 2,
+		UserID: "c3c9e0d3-b3cf-4e53-9d24-b38f16e6f419",
 		Limit:  1000000,
 		Month:  1,
 	}
@@ -97,7 +97,7 @@ func Limit() {
 
 	var limit6 = entity.Limit{
 		ID:     6,
-		UserID: 2,
+		UserID: "c3c9e0d3-b3cf-4e53-9d24-b38f16e6f419",
 		Limit:  1200000,
 		Month:  2,
 	}
@@ -105,7 +105,7 @@ func Limit() {
 
 	var limit7 = entity.Limit{
 		ID:     7,
-		UserID: 2,
+		UserID: "c3c9e0d3-b3cf-4e53-9d24-b38f16e6f419",
 		Limit:  1500000,
 		Month:  3,
 	}
@@ -113,7 +113,7 @@ func Limit() {
 
 	var limit8 = entity.Limit{
 		ID:     8,
-		UserID: 2,
+		UserID: "c3c9e0d3-b3cf-4e53-9d24-b38f16e6f419",
 		Limit:  2000000,
 		Month:  4,
 	}

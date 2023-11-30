@@ -21,7 +21,6 @@ func (u *authService) Profile(req dto.ProfileRequest) (*dto.ProfileResponse, err
 	}
 
 	return &dto.ProfileResponse{
-		ID:           transaction.ID,
 		FullName:     transaction.FullName,
 		Email:        transaction.Email,
 		LegalName:    transaction.LegalName,

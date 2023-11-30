@@ -3,12 +3,14 @@ package repositories
 import (
 	dto "aseprayana-skeleton-go/dto/auth"
 	"aseprayana-skeleton-go/entity"
+	"aseprayana-skeleton-go/util"
 )
 
 func (u *authRepository) Signup(req dto.AuthRegisterRequest) (dto.AuthRegisterResponse, error) {
 	user := entity.User{
-		ID:           req.ID,
+		ID:           util.GenerateRandomString(),
 		FullName:     req.FullName,
+		KTP:          req.KTP,
 		LegalName:    req.LegalName,
 		TempatLahir:  req.TempatLahir,
 		TanggalLahir: req.TanggalLahir,
@@ -22,8 +24,10 @@ func (u *authRepository) Signup(req dto.AuthRegisterRequest) (dto.AuthRegisterRe
 	}
 
 	response := dto.AuthRegisterResponse{
+		ID:           user.ID,
 		FullName:     user.FullName,
 		LegalName:    user.LegalName,
+		KTP:          user.KTP,
 		TempatLahir:  user.TempatLahir,
 		TanggalLahir: user.TanggalLahir,
 		Gaji:         user.Gaji,

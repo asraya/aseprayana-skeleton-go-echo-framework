@@ -2,9 +2,10 @@ package dto
 
 // Register
 type AuthRegisterRequest struct {
-	ID           uint   `json:"id"`
+	ID           string `json:"id"`
 	FullName     string `json:"full_name"`
 	LegalName    string `json:"legal_name"`
+	KTP          string `json:"ktp"`
 	TempatLahir  string `json:"tempat_lahir"`
 	TanggalLahir string `json:"tanggal_lahir"`
 	Gaji         string `json:"gaji"`
@@ -15,8 +16,10 @@ type AuthRegisterRequest struct {
 }
 
 type AuthRegisterResponse struct {
+	ID           string `json:"id"`
 	FullName     string `json:"full_name"`
 	LegalName    string `json:"legal_name"`
+	KTP          string `json:"ktp"`
 	TempatLahir  string `json:"tempat_lahir"`
 	TanggalLahir string `json:"tanggal_lahir"`
 	Gaji         string `json:"gaji"`

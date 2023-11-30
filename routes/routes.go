@@ -44,13 +44,17 @@ func New() *echo.Echo {
 
 	e.GET("/swagger/*any", echoSwagger.WrapHandler)
 
-	v1 := e.Group("api/v1", middlewares.AuthorizeJWT(JWT))
+	v1 := e.Group("api/v1")
 	{
 		authRoutes := e.Group("api/auth")
 		{
 			authRoutes.POST("/register", authH.Signup)
 			authRoutes.POST("/login", authH.Signin)
-			authRoutes.GET("/profile/:id", authH.Profile)
+		}
+
+		p := v1.Group("/profile", middlewares.AuthorizeJWT(JWT))
+		{
+			p.GET("/:id", authH.Profile)
 		}
 
 		n := v1.Group("/transaction", middlewares.AuthorizeJWT(JWT))

@@ -12,6 +12,7 @@ func (b *transactionService) Create(req dto.CreateRequest) (dto.TransactionRespo
 	}
 
 	response := dto.TransactionResponse{
+		ID:            transaction.ID,
 		NomorKontrak:  transaction.NomorKontrak,
 		OTR:           transaction.OTR,
 		AdminFee:      transaction.AdminFee,

@@ -8,12 +8,14 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+const userIDContextKey = "user_id"
+
 func AuthorizeJWT(jwtService JWTService) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			authHeader := c.Request().Header.Get("Authorization")
 			if authHeader == "" {
-				return res.ErrorBuilder(&res.ErrorConstant.BadRequest, &res.Error{}).Send(c)
+				return res.ErrorBuilder(&res.ErrorConstant.Unauthorized, nil).Send(c)
 			}
 
 			// ValidateToken returns the token, userID, and an error

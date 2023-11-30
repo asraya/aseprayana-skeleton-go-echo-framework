@@ -21,16 +21,6 @@ func (b *transactionRepository) Create(req dto.CreateRequest) (*dto.TransactionR
 		})
 	}
 
-	for _, goods := range gds {
-		transaction = append(transaction, entity.Transaction{
-			NamaAsset: goods.Goods,
-		})
-	}
-
-	if err := b.DB.Create(&transaction).Error; err != nil {
-		return nil, err
-	}
-
 	var namaAssets []string
 	for _, goods := range gds {
 		namaAssets = append(namaAssets, goods.Goods)
@@ -57,13 +47,29 @@ func (b *transactionRepository) Create(req dto.CreateRequest) (*dto.TransactionR
 	jumlahCicilanTotal := jumlahBunga + harga + adminFee
 
 	response := &dto.TransactionResponse{
-
+		ID:            util.GenerateRandomString(),
 		NomorKontrak:  util.GenerateRandomString(),
 		OTR:           util.GenerateOTR(8),
 		AdminFee:      util.FormatIDR(adminFee),
 		JumlahCicilan: util.FormatIDR(jumlahCicilanTotal),
 		JumlahBunga:   util.FormatIDR(jumlahBunga),
 		NamaAsset:     joinedNames,
+	}
+
+	for _, goods := range gds {
+		transaction = append(transaction, entity.Transaction{
+			ID:            response.ID,
+			NamaAsset:     goods.Goods,
+			NomorKontrak:  response.NomorKontrak,
+			OTR:           response.OTR,
+			AdminFee:      response.AdminFee,
+			JumlahCicilan: response.JumlahCicilan,
+			JumlahBunga:   response.JumlahBunga,
+		})
+	}
+
+	if err := b.DB.Create(&transaction).Error; err != nil {
+		return nil, err
 	}
 
 	return response, nil
