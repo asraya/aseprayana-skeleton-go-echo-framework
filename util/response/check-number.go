@@ -2,6 +2,7 @@ package response
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -15,12 +16,17 @@ import (
 // 	return nil
 // }
 
-func IsNumber(c echo.Context, paramName string) (string, error) {
+func IsNumber(c echo.Context, paramName string) (uint, error) {
 	value := c.Param(paramName)
 
 	if len(value) == 0 {
-		return "", fmt.Errorf("%s cannot be empty", paramName)
+		return 0, fmt.Errorf("%s cannot be empty", paramName)
 	}
 
-	return value, nil
+	uintValue, err := strconv.ParseUint(value, 10, 0)
+	if err != nil {
+		return 0, fmt.Errorf("invalid format for %s: %v", paramName, err)
+	}
+
+	return uint(uintValue), nil
 }

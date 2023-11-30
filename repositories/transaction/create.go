@@ -66,5 +66,16 @@ func (b *transactionRepository) Create(req dto.CreateRequest) (*dto.TransactionR
 		NamaAsset:     joinedNames,
 	}
 
+	if err := b.DB.Create(&entity.Transaction{
+		NamaAsset:     response.NamaAsset,
+		NomorKontrak:  response.NomorKontrak,
+		OTR:           response.OTR,
+		AdminFee:      response.AdminFee,
+		JumlahCicilan: response.JumlahCicilan,
+		JumlahBunga:   response.JumlahBunga,
+	}).Error; err != nil {
+		return nil, err
+	}
+
 	return response, nil
 }

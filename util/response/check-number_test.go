@@ -45,7 +45,7 @@ func TestIsNumber_Failure_InvalidFormat(t *testing.T) {
 
 	assert.NotNil(t, err)
 	assert.Equal(t, uint(0), id)
-	assert.EqualError(t, err, "invalid id format: strconv.ParseUint: parsing \"12dwq3\": invalid syntax")
+	assert.Contains(t, err.Error(), "invalid format for id")
 }
 
 func TestIsNumber_Failure_EmptyID(t *testing.T) {
@@ -59,5 +59,5 @@ func TestIsNumber_Failure_EmptyID(t *testing.T) {
 
 	assert.NotNil(t, err)
 	assert.Equal(t, uint(0), id)
-	assert.EqualError(t, err, "invalid id format: strconv.ParseUint: parsing \"\": invalid syntax")
+	assert.Contains(t, err.Error(), "id cannot be empty")
 }
