@@ -1,0 +1,391 @@
+definitions:
+  dto.AuthLoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.AuthLoginResponse:
+    properties:
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: integer
+      limits:
+        items:
+          $ref: '#/definitions/dto.LimitResponse'
+        type: array
+      token:
+        type: string
+    type: object
+  dto.AuthRegisterRequest:
+    properties:
+      email:
+        type: string
+      foto_ktp:
+        type: string
+      foto_selfie:
+        type: string
+      full_name:
+        type: string
+      gaji:
+        type: string
+      legal_name:
+        type: string
+      password:
+        type: string
+      tanggal_lahir:
+        type: string
+      tempat_lahir:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.AuthRegisterResponse:
+    properties:
+      email:
+        type: string
+      foto_ktp:
+        type: string
+      foto_selfie:
+        type: string
+      full_name:
+        type: string
+      gaji:
+        type: string
+      legal_name:
+        type: string
+      password:
+        type: string
+      tanggal_lahir:
+        type: string
+      tempat_lahir:
+        type: string
+    required:
+    - password
+    type: object
+  dto.CreateRequest:
+    properties:
+      goods:
+        items:
+          $ref: '#/definitions/dto.GoodsRequest'
+        type: array
+    type: object
+  dto.GoodsRequest:
+    properties:
+      goods:
+        type: string
+      price:
+        type: number
+      tenor:
+        type: integer
+    type: object
+  dto.LimitResponse:
+    properties:
+      limit:
+        type: number
+      month:
+        type: integer
+    type: object
+  dto.TransactionResponse:
+    properties:
+      admin_fee:
+        type: string
+      jumlah_bunga:
+        type: string
+      jumlah_cicilan:
+        type: string
+      nama_asset:
+        type: string
+      nomor_kontrak:
+        type: string
+      otr:
+        type: string
+    required:
+    - nomor_kontrak
+    - otr
+    type: object
+  dto.UpdateRequest:
+    properties:
+      admin_fee:
+        type: string
+      id:
+        type: integer
+      jumlah_bunga:
+        type: string
+      jumlah_cicilan:
+        type: string
+      nama_asset:
+        type: string
+      nomor_kontrak:
+        type: string
+      otr:
+        type: string
+    required:
+    - id
+    - nomor_kontrak
+    - otr
+    type: object
+  response.ResponseModel:
+    properties:
+      data: {}
+      message:
+        type: string
+      status:
+        type: boolean
+    type: object
+  response.errorResponse:
+    properties:
+      error:
+        type: string
+      meta:
+        $ref: '#/definitions/response.ResponseModel'
+    type: object
+info:
+  contact: {}
+paths:
+  /api/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login user
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AuthLoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.AuthLoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Login user
+      tags:
+      - auth
+  /api/auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Register user
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.AuthRegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.AuthRegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Register user
+      tags:
+      - auth
+  /api/v1/transaction:
+    post:
+      consumes:
+      - application/json
+      description: Create transaction
+      parameters:
+      - description: Authorization Bearer
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.TransactionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Create transaction
+      tags:
+      - transaction
+  /api/v1/transaction/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete transaction
+      parameters:
+      - description: Authorization Bearer
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.TransactionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete transaction
+      tags:
+      - transaction
+    get:
+      consumes:
+      - application/json
+      description: Get By ID transaction
+      parameters:
+      - description: Authorization Bearer
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.TransactionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get By ID transaction
+      tags:
+      - transaction
+    patch:
+      consumes:
+      - application/json
+      description: Update transaction
+      parameters:
+      - description: Authorization Bearer
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: id path
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.TransactionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      security:
+      - BearerAuth: []
+      summary: Update transaction
+      tags:
+      - transaction
+swagger: "2.0"
