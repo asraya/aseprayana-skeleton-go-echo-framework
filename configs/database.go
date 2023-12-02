@@ -58,7 +58,14 @@ func InitDB() *gorm.DB {
 	sqlDB.SetConnMaxLifetime(10 * time.Hour)
 
 	// Migrate the schema
-	db.AutoMigrate(&entity.User{}, &entity.Limit{}, &entity.Transaction{}, &entity.Goods{})
+	db.AutoMigrate(
+		&entity.User{},
+		&entity.Role{},
+		&entity.RoleUser{},
+		&entity.Limit{},
+		&entity.Transaction{},
+		&entity.Goods{},
+	)
 
 	return db
 }

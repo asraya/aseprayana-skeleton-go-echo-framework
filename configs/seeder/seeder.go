@@ -154,8 +154,76 @@ func Goods() {
 	}
 }
 
+func Role() {
+	db := configs.InitDB()
+
+	var gds []entity.Role
+
+	var gods1 = entity.Role{
+		ID:   1,
+		Role: "SUPERADMIN",
+	}
+	gds = append(gds, gods1)
+
+	var gods2 = entity.Role{
+		ID:   2,
+		Role: "ADMIN",
+	}
+	gds = append(gds, gods2)
+
+	var gods3 = entity.Role{
+		ID:   3,
+		Role: "USER",
+	}
+	gds = append(gds, gods3)
+
+	for _, Goods := range gds {
+		if err := db.Create(&Goods).Error; err != nil {
+			db.Create(&Goods)
+		}
+		fmt.Printf("package type %s has been created\n", Goods.Role)
+
+	}
+}
+
+func RoleUser() {
+	db := configs.InitDB()
+
+	var gds []entity.RoleUser
+
+	var gods1 = entity.RoleUser{
+		ID:     1,
+		UserID: "956f2014-f8ab-41e2-88c1-0c3871524665",
+		RoleID: 1,
+	}
+	gds = append(gds, gods1)
+
+	var gods2 = entity.RoleUser{
+		ID:     2,
+		UserID: "-",
+		RoleID: 2,
+	}
+	gds = append(gds, gods2)
+
+	var gods3 = entity.RoleUser{
+		ID:     3,
+		UserID: "c3c9e0d3-b3cf-4e53-9d24-b38f16e6f419",
+		RoleID: 3,
+	}
+	gds = append(gds, gods3)
+
+	for _, Goods := range gds {
+		if err := db.Create(&Goods).Error; err != nil {
+			db.Create(&Goods)
+		}
+
+	}
+}
+
 func RunSeeder() {
 	Users()
+	Role()
+	RoleUser()
 	Limit()
 	Goods()
 }

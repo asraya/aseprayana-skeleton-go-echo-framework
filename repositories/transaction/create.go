@@ -65,6 +65,7 @@ func (b *transactionRepository) Create(req dto.CreateRequest) (*dto.TransactionR
 			AdminFee:      response.AdminFee,
 			JumlahCicilan: response.JumlahCicilan,
 			JumlahBunga:   response.JumlahBunga,
+			CreatedBy:     req.CreatedBy,
 		})
 	}
 

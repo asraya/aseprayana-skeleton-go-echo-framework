@@ -25,12 +25,17 @@ import (
 // @Router /api/v1/transaction/{id} [patch]
 func (b *domainHandler) Update(c echo.Context) error {
 	var req dto.UpdateRequest
+	updatedBy, ok := c.Get("UpdatedBy").(string)
+	if !ok {
+		return res.ErrorBuilder(&res.ErrorConstant.InternalServerError, nil).Send(c)
+	}
 
 	idUint, err := res.IsNumber(c, "id")
 	if err != nil {
 		return res.ErrorBuilder(&res.ErrorConstant.BadRequest, err).Send(c)
 	}
 	req.ID = idUint
+	req.UpdatedBy = updatedBy
 
 	err = c.Bind(&req)
 	if err != nil {

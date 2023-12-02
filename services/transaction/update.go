@@ -12,6 +12,7 @@ func (b *transactionService) Update(req dto.UpdateRequest) (dto.TransactionRespo
 		JumlahCicilan: req.JumlahCicilan,
 		JumlahBunga:   req.JumlahBunga,
 		NamaAsset:     req.NamaAsset,
+		UpdatedBy:     req.UpdatedBy,
 	}
 
 	Transaction, err := b.TransactionR.Update(req)
@@ -26,6 +27,7 @@ func (b *transactionService) Update(req dto.UpdateRequest) (dto.TransactionRespo
 		JumlahCicilan: transactionBody.JumlahCicilan,
 		JumlahBunga:   transactionBody.JumlahBunga,
 		NamaAsset:     transactionBody.NamaAsset,
+		UpdatedBy:     transactionBody.UpdatedBy,
 	}
 
 	return response, nil

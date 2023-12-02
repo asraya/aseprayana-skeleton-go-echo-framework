@@ -23,7 +23,12 @@ import (
 // @Router /api/v1/transaction [post]
 func (b *domainHandler) Create(c echo.Context) error {
 	var req dto.CreateRequest
+	createdBy, ok := c.Get("CreatedBy").(string)
+	if !ok {
+		return res.ErrorBuilder(&res.ErrorConstant.InternalServerError, nil).Send(c)
+	}
 
+	req.CreatedBy = createdBy
 	err := c.Bind(&req)
 	if err != nil {
 		return res.ErrorBuilder(&res.ErrorConstant.BadRequest, err).Send(c)

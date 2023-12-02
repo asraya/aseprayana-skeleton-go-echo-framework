@@ -4,6 +4,8 @@
   - [x] Docker
   - [x] Auth middleware JWT
   - [x] Gorm
+  - [x] Google/UUID
+  - [x] Role & Permission
   - [x] Database Mysql
   - [x] Unit testing
   - [x] Elasticsearch
@@ -11,7 +13,6 @@
   - [x] Swagger
   - [x] Seeder and migration database
   - [x] CI-CD
-
 
 ## how to run
 - config .ENV

@@ -11,7 +11,7 @@ type TransactionService interface {
 	GetById(req dto.GetByIdRequest) (*dto.TransactionResponse, error)
 	Create(req dto.CreateRequest) (dto.TransactionResponse, error)
 	Update(req dto.UpdateRequest) (dto.TransactionResponse, error)
-	Delete(req dto.DeleteRequest) (*dto.TransactionResponse, error)
+	Delete(req dto.DeleteRequest) (dto.TransactionResponse, error)
 }
 
 type transactionService struct {

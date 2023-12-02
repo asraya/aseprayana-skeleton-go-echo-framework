@@ -19,6 +19,7 @@ func (b *transactionService) Create(req dto.CreateRequest) (dto.TransactionRespo
 		JumlahCicilan: transaction.JumlahCicilan,
 		JumlahBunga:   transaction.JumlahBunga,
 		NamaAsset:     transaction.NamaAsset,
+		CreatedBy:     req.CreatedBy,
 	}
 
 	return response, nil

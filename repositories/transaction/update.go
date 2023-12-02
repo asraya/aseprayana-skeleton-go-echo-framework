@@ -35,6 +35,7 @@ func (b *transactionRepository) Update(req dto.UpdateRequest) (dto.TransactionRe
 		JumlahCicilan: req.JumlahCicilan,
 		JumlahBunga:   req.JumlahBunga,
 		NamaAsset:     req.NamaAsset,
+		UpdatedBy:     req.UpdatedBy,
 	}
 
 	transaction, err := b.GetById(tr)
@@ -49,6 +50,7 @@ func (b *transactionRepository) Update(req dto.UpdateRequest) (dto.TransactionRe
 		JumlahCicilan: request.JumlahCicilan,
 		JumlahBunga:   request.JumlahBunga,
 		NamaAsset:     request.NamaAsset,
+		UpdatedBy:     request.UpdatedBy,
 	}).Error
 	if err != nil {
 		return dto.TransactionResponse{}, err
@@ -61,6 +63,7 @@ func (b *transactionRepository) Update(req dto.UpdateRequest) (dto.TransactionRe
 		JumlahCicilan: request.JumlahCicilan,
 		JumlahBunga:   transaction.JumlahBunga,
 		NamaAsset:     request.NamaAsset,
+		UpdatedBy:     request.UpdatedBy,
 	}
 
 	return response, nil

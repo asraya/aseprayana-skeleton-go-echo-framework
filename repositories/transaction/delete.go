@@ -5,19 +5,24 @@ import (
 	"aseprayana-skeleton-go/entity"
 )
 
-func (b *transactionRepository) Delete(req dto.DeleteRequest) (*dto.TransactionResponse, error) {
+func (b *transactionRepository) Delete(req dto.DeleteRequest) (dto.TransactionResponse, error) {
 	tr := dto.GetByIdRequest{
 		ID: req.ID,
 	}
 
 	_, err := b.GetById(tr)
 	if err != nil {
-		return nil, err
+		return dto.TransactionResponse{}, err
 	}
 
-	if err := b.DB.Delete(&entity.Transaction{}, req.ID).Error; err != nil {
-		return nil, err
+	// Use GORM BeforeDelete hook to set DeletedBy
+	if err := b.DB.Where("id = ?", req.ID).Delete(&entity.Transaction{}).Error; err != nil {
+		return dto.TransactionResponse{}, err
 	}
 
-	return nil, err
+	response := dto.TransactionResponse{
+		DeletedBy: req.DeletedBy,
+	}
+
+	return response, nil
 }

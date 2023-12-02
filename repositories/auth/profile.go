@@ -7,7 +7,7 @@ import (
 
 func (u *authRepository) Profile(req dto.ProfileRequest) (*entity.User, error) {
 	var existingUser entity.User
-	err := u.DB.Preload("Limit").Where("id = ?", req.ID).First(&existingUser).Error
+	err := u.DB.Preload("Limit").Preload("Role").Where("id = ?", req.ID).First(&existingUser).Error
 	if err != nil {
 		return nil, err
 	}

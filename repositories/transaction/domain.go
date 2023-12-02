@@ -11,7 +11,7 @@ type TransactionRepository interface {
 	GetAll(req dto.GetAllRequest) (dto.PaginationResponse, error)
 	Create(req dto.CreateRequest) (*dto.TransactionResponse, error)
 	Update(req dto.UpdateRequest) (dto.TransactionResponse, error)
-	Delete(req dto.DeleteRequest) (*dto.TransactionResponse, error)
+	Delete(req dto.DeleteRequest) (dto.TransactionResponse, error)
 }
 
 type transactionRepository struct {

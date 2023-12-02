@@ -13,6 +13,7 @@ type AuthRegisterRequest struct {
 	FotoSelfie   string `json:"foto_selfie"`
 	Email        string `json:"email" form:"email" validate:"required,email"`
 	Password     string `json:"password" form:"password" validate:"required,password"`
+	Role         uint   `json:"role"`
 }
 
 type AuthRegisterResponse struct {
@@ -27,4 +28,5 @@ type AuthRegisterResponse struct {
 	FotoSelfie   string `json:"foto_selfie"`
 	Email        string `json:"email"`
 	Password     string `json:"password" form:"password" validate:"required,password"`
+	Role         uint   `json:"role"`
 }

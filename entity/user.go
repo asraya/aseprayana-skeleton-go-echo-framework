@@ -19,6 +19,7 @@ type User struct {
 	FotoSelfie   string         `gorm:"foto_selfie" json:"foto_selfie"`
 	Password     string         `gorm:"password" json:"password"`
 	Limit        []Limit        `json:"limit" gorm:"foreignKey:UserID"`
+	Role         RoleUser       `json:"role" gorm:"foreignKey:UserID"`
 	CreatedAt    time.Time      `json:"created_at"`
 	UpdatedAt    time.Time      `json:"updated_at"`
 	DeletedAt    gorm.DeletedAt `gorm:"index" json:"deleted_at"`

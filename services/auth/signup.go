@@ -22,6 +22,7 @@ func (u *authService) Signup(req dto.AuthRegisterRequest) (dto.AuthRegisterRespo
 		Gaji:         req.Gaji,
 		Email:        req.Email,
 		Password:     req.Password,
+		Role:         1,
 	}
 
 	createdUser, err := u.Repo.Signup(user)

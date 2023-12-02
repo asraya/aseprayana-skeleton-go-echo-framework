@@ -1,9 +1,12 @@
 package dto
 
-import "aseprayana-skeleton-go/dto"
+import (
+	"aseprayana-skeleton-go/dto"
+)
 
 type CreateRequest struct {
-	Goods []dto.GoodsRequest `json:"goods"`
+	CreatedBy string             `json:"created_by"`
+	Goods     []dto.GoodsRequest `json:"goods"`
 }
 
 type GetByIdRequest struct {
@@ -11,7 +14,8 @@ type GetByIdRequest struct {
 }
 
 type DeleteRequest struct {
-	ID string `param:"id" validate:"required"`
+	ID        string `param:"id" validate:"required"`
+	DeletedBy string `json:"deleted_by"`
 }
 
 type UpdateRequest struct {
